@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/bottom_store"
+        android:icon="@drawable/store_icon"
+        android:title="Store"/>
+
+    <item
+        android:id="@+id/bottom_giftbox"
+        android:icon="@drawable/giftbox_icon"
+        android:title="Giftbox"
+        />
+
+    <item
+        android:id="@+id/bottom_bill"
+        android:icon="@drawable/bill_icon"
+        android:title="Bill"
+        />
+
+</menu>
