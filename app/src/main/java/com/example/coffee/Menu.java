@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import android.widget.ListView;
 import android.os.Bundle;
 import android.os.Handler;
+import java.io.Serializable;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Menu extends AppCompatActivity{
+public class Menu extends AppCompatActivity {
     public String Name;
     public Integer Pics;
 

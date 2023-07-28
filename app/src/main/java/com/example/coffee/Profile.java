@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class Profile extends AppCompatActivity {
 
-//    Toolbar toolbardetails;
+    Toolbar toolbardetails;
 //    private EditText fullnametxt, phonenumtxt, emailtxt, addresstxt;
 //    private ImageView editIcon1, editIcon2, editIcon3, editIcon4;
 //    private Button saveButton;
@@ -28,6 +28,7 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
+        toolbardetails = (Toolbar) findViewById(R.id.toolbar_details);
 //        fullnametxt = findViewById(R.id.fullnametxt);
 //        phonenumtxt = findViewById(R.id.phonenumtxt);
 //        emailtxt = findViewById(R.id.emailtxt);
@@ -73,19 +74,19 @@ public class Profile extends AppCompatActivity {
 //                enableEditMode(addresstxt);
 //            }
 //        });
-//        ActionToolbar();
+        ActionToolbar();
     }
 
-//    private void ActionToolbar() {
-//        setSupportActionBar(toolbardetails);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        toolbardetails.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                finish();
-//            }
-//        });
-//    }
+    private void ActionToolbar() {
+        setSupportActionBar(toolbardetails);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbardetails.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
 //
 //    private void enableEditMode(EditText editText) {
 //        editText.setEnabled(true);

@@ -23,17 +23,23 @@
 //
 package com.example.coffee;
 
+import android.content.ClipData;
 import android.media.Image;
 import android.os.Bundle;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import com.example.coffee.R;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.annotation.NonNull;
 import android.util.Log;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.View;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import android.view.MenuItem;
 import java.util.ArrayList;
 import android.widget.ViewFlipper;
 
@@ -42,18 +48,46 @@ public class HomePage extends AppCompatActivity {
     ArrayList<Menu> MenuArraydetails;
     ViewFlipper viewFlipper;
 
-    ImageView avaImageView;
-
+    ImageView avaImageView, rewardView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.bottom_store) {
+                    // Move to StoreActivity when Store item is clicked
+                    startActivity(new Intent(HomePage.this, HomePage.class));
+                    return true;
+                } else if (item.getItemId() == R.id.bottom_giftbox) {
+                    // Move to GiftboxActivity when Giftbox item is clicked
+                    startActivity(new Intent(HomePage.this, Reward.class));
+                    return true;
+                } else if (item.getItemId() == R.id.bottom_bill) {
+                    // Move to BillActivity when Bill item is clicked
+//                    startActivity(new Intent(HomePage.this, BillActivity.class));
+                    return true;
+                }
+                return false;
+            }
+        });
 
         ImageView avaImageView = findViewById(R.id.ava);
         avaImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this, Profile.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageView rewardView = findViewById(R.id.shoppingbag);
+        rewardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this, Reward.class);
                 startActivity(intent);
             }
         });
@@ -121,7 +155,6 @@ public class HomePage extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-            // Add the grid item to the GridLayout
             gridLayout.addView(gridItem);
         }
     }

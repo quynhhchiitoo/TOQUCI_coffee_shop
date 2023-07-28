@@ -103,22 +103,32 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_weight="1"
-                    android:text="Level of spiciness:"
+                    android:text="Spicy flavor:"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/spicy"
-                    android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/buttonYesspicy"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:backgroundTint="#75C2F6"
+                    android:text="Yes"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/buttonNospicy"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
-                    android:layout_weight="1"
-                    android:text="3"
-                    android:textAlignment="viewEnd"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:backgroundTint="#FBEEAC"
+                    android:text="No"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
 
             </LinearLayout>
 
@@ -147,17 +157,27 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/cheese"
-                    android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/buttoncheese1"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:backgroundTint="#75C2F6"
+                    android:text="100gr"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/buttoncheese2"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
-                    android:layout_weight="1"
-                    android:text="8"
-                    android:textAlignment="viewEnd"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:backgroundTint="#FBEEAC"
+                    android:text="200gr"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
             </LinearLayout>
 
             <View
@@ -186,7 +206,7 @@
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/buttonYes"
+                    android:id="@+id/buttonYessauce"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="4dp"
@@ -197,7 +217,7 @@
                     android:textSize="10sp" />
 
                 <Button
-                    android:id="@+id/buttonNo"
+                    android:id="@+id/buttonNosauce"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"

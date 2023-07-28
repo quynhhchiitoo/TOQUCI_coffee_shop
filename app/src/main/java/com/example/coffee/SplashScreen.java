@@ -16,11 +16,9 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Using Handler to add a delay and move to HomePage activity
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                // Create an Intent to start the HomePage activity
                 Intent intent = new Intent(SplashScreen.this, HomePage.class);
                 startActivity(intent);
             }

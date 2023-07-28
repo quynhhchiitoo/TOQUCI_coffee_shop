@@ -1,4 +1,4 @@
-package com.example.coffee;
+package com.example.coffee.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.coffee.Menu;
+import com.example.coffee.R;
 
 public class MenuAdapter extends BaseAdapter{
 

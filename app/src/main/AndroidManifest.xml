@@ -28,10 +28,11 @@
 
         <activity
             android:name=".Profile"
-            android:label="Profile"
+            android:label=""
             android:theme="@style/Theme.Coffee">
         </activity>
-
+        <activity android:name=".Reward" />
+        <activity android:name=".Redeem" />
     </application>
 
 </manifest>
