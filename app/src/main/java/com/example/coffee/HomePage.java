@@ -43,12 +43,16 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import android.widget.ViewFlipper;
 
+import org.w3c.dom.Text;
+
 public class HomePage extends AppCompatActivity {
     ArrayList<Menu> MenuArray;
     ArrayList<Menu> MenuArraydetails;
     ViewFlipper viewFlipper;
 
     ImageView avaImageView, rewardView;
+
+    TextView username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +77,11 @@ public class HomePage extends AppCompatActivity {
                 return false;
             }
         });
+
+        TextView username = findViewById(R.id.user_name);
+        Database database = new Database(getApplicationContext());
+        User user = database.getFirstUser();
+        username.setText(user.fullname);
 
         ImageView avaImageView = findViewById(R.id.ava);
         avaImageView.setOnClickListener(new View.OnClickListener() {
