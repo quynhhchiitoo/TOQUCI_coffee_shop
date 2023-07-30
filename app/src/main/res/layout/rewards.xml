@@ -156,19 +156,80 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
+                android:layout_marginTop="10dp"
                 android:text="Loyalty card"
                 android:textColor="#AB841C"
                 android:textStyle="bold" />
 
-<!--            <ImageView-->
-<!--                android:id="@+id/imageView2"-->
-<!--                android:layout_width="311dp"-->
-<!--                android:layout_height="80dp"-->
-<!--                android:layout_alignParentBottom="true"-->
-<!--                android:layout_centerHorizontal="true"-->
-<!--                android:layout_marginBottom="7dp"-->
-<!--                android:background="@drawable/menu_bg"-->
-<!--                app:srcCompat="@drawable/loyaltycard" />-->
+            <ImageView
+                android:id="@+id/cheese1"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="303dp"
+                android:layout_marginBottom="31dp"
+                android:src="@drawable/black_cheese" />
+
+            <ImageView
+                android:id="@+id/cheese2"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="255dp"
+                android:layout_marginBottom="31dp"
+                android:src="@drawable/black_cheese" />
+
+            <ImageView
+                android:id="@+id/cheese3"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="207dp"
+                android:layout_marginBottom="32dp"
+                android:src="@drawable/black_cheese" />
+
+            <ImageView
+                android:id="@+id/cheese4"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="159dp"
+                android:layout_marginBottom="32dp"
+                android:src="@drawable/black_cheese" />
+
+            <ImageView
+                android:id="@+id/cheese5"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="111dp"
+                android:layout_marginBottom="32dp"
+                android:src="@drawable/black_cheese" />
+
+            <ImageView
+                android:id="@+id/cheese6"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="62dp"
+                android:layout_marginBottom="31dp"
+                android:src="@drawable/black_cheese" />
+
+            <ImageView
+                android:id="@+id/cheese7"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="31dp"
+                android:src="@drawable/black_cheese" />
         </RelativeLayout>
     </RelativeLayout>
 
