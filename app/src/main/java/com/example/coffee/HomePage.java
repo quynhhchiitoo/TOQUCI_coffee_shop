@@ -50,9 +50,10 @@ public class HomePage extends AppCompatActivity {
     ArrayList<Menu> MenuArraydetails;
     ViewFlipper viewFlipper;
 
-    ImageView avaImageView, rewardView;
+    ImageView avaImageView, myCartView;
 
     TextView username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,16 +63,12 @@ public class HomePage extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.bottom_store) {
-                    // Move to StoreActivity when Store item is clicked
-                    startActivity(new Intent(HomePage.this, HomePage.class));
                     return true;
                 } else if (item.getItemId() == R.id.bottom_giftbox) {
-                    // Move to GiftboxActivity when Giftbox item is clicked
                     startActivity(new Intent(HomePage.this, Reward.class));
                     return true;
                 } else if (item.getItemId() == R.id.bottom_bill) {
-                    // Move to BillActivity when Bill item is clicked
-//                    startActivity(new Intent(HomePage.this, BillActivity.class));
+                    startActivity(new Intent(HomePage.this, MyOrders.class));
                     return true;
                 }
                 return false;
@@ -81,7 +78,10 @@ public class HomePage extends AppCompatActivity {
         TextView username = findViewById(R.id.user_name);
         Database database = new Database(getApplicationContext());
         User user = database.getFirstUser();
-        username.setText(user.fullname);
+        if(user == null)
+            username.setText("");
+        else
+            username.setText(user.getFullname());
 
         ImageView avaImageView = findViewById(R.id.ava);
         avaImageView.setOnClickListener(new View.OnClickListener() {
@@ -92,11 +92,11 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        ImageView rewardView = findViewById(R.id.shoppingbag);
-        rewardView.setOnClickListener(new View.OnClickListener() {
+        myCartView = findViewById(R.id.shoppingbag);
+        myCartView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this, Reward.class);
+                Intent intent = new Intent(HomePage.this, MyCartActivity.class);
                 startActivity(intent);
             }
         });

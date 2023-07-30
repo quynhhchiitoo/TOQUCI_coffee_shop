@@ -23,6 +23,7 @@
         </activity>
 
         <activity android:name=".HomePage" />
+        <activity android:name=".MyOrders" />
         <activity android:name=".Details"
             android:label=""/>
 
@@ -33,6 +34,9 @@
         </activity>
         <activity android:name=".Reward" />
         <activity android:name=".Redeem" />
+        <activity android:name=".MyCart" />
+        <activity android:name=".MyCartActivity" />
+        <activity android:name=".OrderSuccess" />
     </application>
 
 </manifest>
