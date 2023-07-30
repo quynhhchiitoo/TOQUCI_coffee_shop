@@ -40,7 +40,7 @@ public class Reward extends AppCompatActivity {
                 } else if (item.getItemId() == R.id.bottom_giftbox) {
                     return true;
                 } else if (item.getItemId() == R.id.bottom_bill) {
-//                    startActivity(new Intent(HomePage.this, BillActivity.class));
+                    startActivity(new Intent(Reward.this, MyCart.class));
                     return true;
                 }
                 return false;

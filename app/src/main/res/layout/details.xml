@@ -10,22 +10,36 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_details"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="?attr/actionBarSize"
         android:layout_marginTop="10dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Details"
             android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="27sp"
             android:textColor="@color/black"
             android:layout_gravity="center"/>
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:background="@drawable/shopping_cart"
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
             android:layout_gravity="right"
-            android:layout_marginRight="12dp"/>
+            android:layout_marginRight="10dp">
+
+            <com.nex3z.notificationbadge.NotificationBadge
+                android:id="@+id/noti_details"
+                android:layout_width="27dp"
+                android:layout_gravity="top|right"
+                android:layout_height="27dp" />
+
+            <ImageView
+                android:layout_marginTop="15sp"
+                android:layout_marginRight="7sp"
+                android:id="@+id/imageCart"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/shopping_cart" />
+        </FrameLayout>
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -73,7 +87,7 @@
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold" />
-                
+
                 <Spinner
                     android:padding="15dp"
                     android:background="@drawable/spinner"

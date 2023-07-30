@@ -13,19 +13,22 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.nex3z.notificationbadge.NotificationBadge;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Details extends AppCompatActivity {
     Toolbar toolbardetails;
-    ImageView imgdetails;
+    ImageView imgdetails, imageCart;
     TextView textname;
     Spinner spinner;
     Button addtocart, buttonYesspicy, buttonNospicy, buttoncheese1, buttoncheese2, buttonYessauce, buttonNosauce;
     TextView total;
     private boolean isSpicySelected = false;
-    private boolean isCheeseOption1Selected = false;
+    private boolean isCheeseOption1Selected = true;
     private boolean isSauceSelected = false;
-    private HashMap<String, Object> cartMap;
+    NotificationBadge badge;
     public class ProductDetails {
         private String name;
         private int totalPrice;
@@ -43,35 +46,50 @@ public class Details extends AppCompatActivity {
         ActionToolbar();
         GetInformation();
         CatchEventSpinner();
+        CatchEventButtons();
         originalTotal = Integer.parseInt(total.getText().toString());
-//        initControl();
+        initControl();
+        imageCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Details.this, MyCartActivity.class);
+                startActivity(intent);
+            }
+        });
     }
-//    private void initControl(){
-//        addtocart.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                addedtoCart();
-//            }
-//        });
-//    }
+    private void initControl(){
+        addtocart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addedtoCart();
+            }
+        });
+    }
 
-//    private void addedtoCart(){
-//        String itemName = textname.getText().toString();
-//        int itemPrice = Integer.parseInt(total.getText().toString());
-//        int itemQuantity = Integer.parseInt(spinner.getSelectedItem().toString());
-//        boolean isSpicy = isSpicySelected;
-//        boolean isSauce = isSauceSelected;
-//        int cheeseQuantity = isCheeseOption1Selected ? 1 : 0;
-//
-//        // Create a new MyCart object with the selected item details
-//        MyCart newItem = new MyCart(itemName, itemPrice, itemQuantity, isSpicy, cheeseQuantity, isSauce);
-//
-//        // Add the new item to the cart list in the Utils class
-//        Utils.manggiohang.add(newItem);
-//
-//        // Show a toast message to indicate that the item has been added to the cart
-//        Toast.makeText(this, "Item added to cart", Toast.LENGTH_SHORT).show();
-//    }
+    private void addedtoCart(){
+        String itemName = textname.getText().toString();
+        int itemPrice = getIntent().getIntExtra("menuPrice", 0);
+        int itemQuantity = Integer.parseInt(spinner.getSelectedItem().toString());
+        boolean isSpicy = isSpicySelected;
+        boolean isSauce = isSauceSelected;
+        int cheeseQuantity = isCheeseOption1Selected ? 1 : 0;
+        int image = getIntent().getIntExtra("menuImage", R.drawable.default_image);
+
+        // Create a new MyCart object with the selected item details
+        MyCart newItem = new MyCart(itemName, itemPrice, itemQuantity, isSpicy, isSauce, cheeseQuantity, image);
+
+        Database database = Database.getInstance(this);
+        database.insertItem(newItem);
+
+        ArrayList<MyCart> items = database.getAllItemsFromCart();
+        int totalQuantity = 0;
+        for(int i = 0; i < items.size(); i++)
+            totalQuantity += items.get(i).getQuantity();
+        badge.setText(String.valueOf(totalQuantity));
+
+        // Show a toast message to indicate that the item has been added to the cart
+        Toast.makeText(getApplicationContext(), "Item added to cart", Toast.LENGTH_SHORT).show();
+    }
     private void CatchEventButtons(){
         // Button click listeners for options
         buttonYesspicy.setOnClickListener(new View.OnClickListener() {
@@ -129,11 +147,9 @@ public class Details extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                int selectedValue = (int) parent.getItemAtPosition(position); // Get the selected value from the spinner
-
-                int newTotal = originalTotal * selectedValue; // Calculate the new total by multiplying the selected value with the original total
-
-                total.setText(String.valueOf(newTotal)); // Update the total TextView with the new total
+                int selectedValue = (int) parent.getItemAtPosition(position);
+                int newTotal = originalTotal * selectedValue;
+                updateTotal();
             }
 
             @Override
@@ -144,7 +160,7 @@ public class Details extends AppCompatActivity {
     }
     private void updateTotal() {
         int quantity = Integer.parseInt(spinner.getSelectedItem().toString());
-        int basePrice = Integer.parseInt(total.getText().toString());
+        int basePrice = getIntent().getIntExtra("menuPrice", 0);
 
         // Calculate the new total based on selected options
         int spicyPrice = isSpicySelected ? 5 : 0;
@@ -185,12 +201,30 @@ public class Details extends AppCompatActivity {
     }
 
     private void Anhxa() {
-        toolbardetails = (Toolbar) findViewById(R.id.toolbar_details);
-        imgdetails = (ImageView) findViewById(R.id.imageviewsdetails);
-        textname = (TextView) findViewById(R.id.nameviewsdetails);
-        spinner = (Spinner) findViewById(R.id.spinner);
-        addtocart = (Button) findViewById(R.id.addtocart);
-        total = (TextView) findViewById(R.id.total);
+        toolbardetails = findViewById(R.id.toolbar_details);
+        imgdetails = findViewById(R.id.imageviewsdetails);
+        textname = findViewById(R.id.nameviewsdetails);
+        spinner = findViewById(R.id.spinner);
+        addtocart = findViewById(R.id.addtocart);
+        total = findViewById(R.id.total);
+        buttonYessauce = findViewById(R.id.buttonYessauce);
+        buttonNosauce = findViewById(R.id.buttonNosauce);
+        buttonYesspicy = findViewById(R.id.buttonYesspicy);
+        buttonNospicy = findViewById(R.id.buttonNospicy);
+        buttoncheese1 = findViewById(R.id.buttoncheese1);
+        buttoncheese2 = findViewById(R.id.buttoncheese2);
+        imageCart = findViewById(R.id.imageCart);
+        initBadge();
+    }
+
+    private void initBadge()
+    {
+        badge = findViewById(R.id.noti_details);
+        Database database = Database.getInstance(this);
+        ArrayList<MyCart> items = database.getAllItemsFromCart();
+        int totalQuantity = 0;
+        for(int i = 0; i < items.size(); i++)
+            totalQuantity += items.get(i).getQuantity();
+        badge.setText(String.valueOf(totalQuantity));
     }
 }
-

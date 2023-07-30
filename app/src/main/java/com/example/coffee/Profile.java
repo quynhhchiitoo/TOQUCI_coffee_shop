@@ -37,15 +37,15 @@ public class Profile extends AppCompatActivity {
         editIcon4 = findViewById(R.id.editicon4);
 
         saveButton = findViewById(R.id.saveButton);
-        Database database = new Database(getApplicationContext());
+        Database database = Database.getInstance(this);
 
         User user = database.getFirstUser();
         if(user != null)
         {
-            fullnametxt.setText(user.fullname);
-            phonenumtxt.setText(user.phonenum);
-            emailtxt.setText(user.email);
-            addresstxt.setText(user.address);
+            fullnametxt.setText(user.getFullname());
+            phonenumtxt.setText(user.getPhonenum());
+            emailtxt.setText(user.getEmail());
+            addresstxt.setText(user.getAddress());
 
             disableEditMode(fullnametxt);
             disableEditMode(phonenumtxt);
@@ -120,10 +120,10 @@ public class Profile extends AppCompatActivity {
         ActionToolbar();
     }
 
-        private void ActionToolbar() {
+    private void ActionToolbar() {
         setSupportActionBar(toolbarprofile);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            toolbarprofile.setNavigationOnClickListener(new View.OnClickListener() {
+        toolbarprofile.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

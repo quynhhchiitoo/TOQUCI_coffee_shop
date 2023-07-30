@@ -61,7 +61,7 @@
                 android:layout_height="71dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:text="1230 points"
+                android:text="50 points"
                 android:backgroundTint="#00235e"/>
         </LinearLayout>
         <LinearLayout
@@ -97,7 +97,7 @@
                 android:layout_height="71dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:text="1230 points"
+                android:text="50 points"
                 android:backgroundTint="#00235e"/>
         </LinearLayout>
         <LinearLayout
@@ -133,7 +133,7 @@
                 android:layout_height="71dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:text="1230 points"
+                android:text="50 points"
                 android:backgroundTint="#00235e"/>
         </LinearLayout>
     </LinearLayout>
