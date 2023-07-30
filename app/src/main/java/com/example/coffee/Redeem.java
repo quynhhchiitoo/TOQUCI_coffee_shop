@@ -1,5 +1,6 @@
 package com.example.coffee;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -17,13 +18,48 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Redeem extends AppCompatActivity {
     Toolbar toolbar_redeem;
-
+    Button redeem1, redeem2,  redeem3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.redeempoints);
+
         Anhxa();
         ActionToolbar();
+        Button redeem1 = findViewById(R.id.redeem1);
+        Button redeem2 = findViewById(R.id.redeem2);
+        Button redeem3 = findViewById(R.id.redeem3);
+
+        redeem1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int redeemedPoints = 50;
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("redeemed_points", redeemedPoints);
+                setResult(Activity.RESULT_OK, resultIntent);
+                finish();
+            }
+        });
+        redeem2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int redeemedPoints = 50;
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("redeemed_points", redeemedPoints);
+                setResult(Activity.RESULT_OK, resultIntent);
+                finish();
+            }
+        });
+        redeem3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int redeemedPoints = 50;
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("redeemed_points", redeemedPoints);
+                setResult(Activity.RESULT_OK, resultIntent);
+                finish();
+            }
+        });
     }
 
     private void ActionToolbar() {

@@ -36,10 +36,11 @@
         android:id="@+id/redeem_background"
         android:layout_width="366dp"
         android:layout_height="110dp"
-        android:layout_marginStart="23dp"
+        android:layout_marginStart="1dp"
         android:layout_marginBottom="330dp"
         android:background="@drawable/top_homepage"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
@@ -81,6 +82,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="16dp"
@@ -143,13 +145,16 @@
 
         <RelativeLayout
             android:id="@+id/blue_homepage_background"
-            android:layout_width="366dp"
-            android:layout_height="111dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="464dp"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginRight="26dp"
+            android:layout_marginTop="90dp"
             android:background="@drawable/top_homepage"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             tools:ignore="ContentDescription">
 
             <TextView

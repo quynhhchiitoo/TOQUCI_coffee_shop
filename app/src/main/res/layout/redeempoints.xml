@@ -57,6 +57,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/redeem1"
                 android:layout_width="wrap_content"
                 android:layout_height="71dp"
                 android:layout_marginLeft="10dp"
@@ -93,6 +94,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/redeem2"
                 android:layout_width="wrap_content"
                 android:layout_height="71dp"
                 android:layout_marginLeft="10dp"
@@ -129,6 +131,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/redeem3"
                 android:layout_width="wrap_content"
                 android:layout_height="71dp"
                 android:layout_marginLeft="10dp"
