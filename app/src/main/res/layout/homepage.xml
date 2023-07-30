@@ -106,15 +106,15 @@
                 android:textColor="#AB841C"
                 android:text="Loyalty card"
                 />
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="311dp"
-                android:layout_height="80dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="7dp"
-                android:background="@drawable/menu_bg"
-                app:srcCompat="@drawable/loyaltycard" />
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView2"-->
+<!--                android:layout_width="311dp"-->
+<!--                android:layout_height="80dp"-->
+<!--                android:layout_alignParentBottom="true"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_marginBottom="7dp"-->
+<!--                android:background="@drawable/menu_bg"-->
+<!--                app:srcCompat="@drawable/loyaltycard" />-->
         </RelativeLayout>
 
         <ViewFlipper

@@ -33,45 +33,11 @@
     </androidx.appcompat.widget.Toolbar>
 
     <RelativeLayout
-        android:id="@+id/blue_homepage_background"
-        android:layout_width="366dp"
-        android:layout_height="111dp"
-        android:layout_marginBottom="604dp"
-        android:background="@drawable/top_homepage"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_reward"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.407"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="ContentDescription">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="26dp"
-            android:text="Loyalty card"
-            android:textColor="#AB841C"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="311dp"
-            android:layout_height="80dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="7dp"
-            android:background="@drawable/menu_bg"
-            app:srcCompat="@drawable/loyaltycard" />
-    </RelativeLayout>
-
-    <RelativeLayout
         android:id="@+id/redeem_background"
         android:layout_width="366dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="420dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginBottom="330dp"
         android:background="@drawable/top_homepage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -106,8 +72,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="34dp"
-            android:layout_marginBottom="48dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginBottom="30dp"
             android:backgroundTint="#00235E"
             android:text="Redeem food"
             android:textStyle="bold" />
@@ -117,8 +83,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="97dp">
 
         <TextView
             android:id="@+id/textView2"
@@ -127,8 +93,8 @@
             android:layout_above="@+id/scrollView"
             android:layout_alignParentEnd="true"
             android:layout_marginLeft="20dp"
-            android:layout_marginEnd="234dp"
-            android:layout_marginBottom="289dp"
+            android:layout_marginEnd="237dp"
+            android:layout_marginBottom="197dp"
             android:gravity="end"
             android:text="History Rewards"
             android:textColor="@color/white"
@@ -174,6 +140,36 @@
             app:itemIconTint="@drawable/items_selector"
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/menu" />
+
+        <RelativeLayout
+            android:id="@+id/blue_homepage_background"
+            android:layout_width="366dp"
+            android:layout_height="111dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="464dp"
+            android:background="@drawable/top_homepage"
+            tools:ignore="ContentDescription">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="26dp"
+                android:text="Loyalty card"
+                android:textColor="#AB841C"
+                android:textStyle="bold" />
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView2"-->
+<!--                android:layout_width="311dp"-->
+<!--                android:layout_height="80dp"-->
+<!--                android:layout_alignParentBottom="true"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_marginBottom="7dp"-->
+<!--                android:background="@drawable/menu_bg"-->
+<!--                app:srcCompat="@drawable/loyaltycard" />-->
+        </RelativeLayout>
     </RelativeLayout>
 
 
