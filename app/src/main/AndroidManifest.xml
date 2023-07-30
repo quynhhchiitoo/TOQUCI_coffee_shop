@@ -23,7 +23,8 @@
         </activity>
 
         <activity android:name=".HomePage" />
-        <activity android:name=".MyOrders" />
+        <activity android:name=".MyOrders_OnGoing" />
+        <activity android:name=".MyOrders_History" />
         <activity android:name=".Details"
             android:label=""/>
 

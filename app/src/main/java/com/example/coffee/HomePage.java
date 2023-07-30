@@ -23,18 +23,12 @@
 //
 package com.example.coffee;
 
-import android.content.ClipData;
-import android.media.Image;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import com.example.coffee.R;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
-import android.util.Log;
+
 import android.widget.GridLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.View;
@@ -42,8 +36,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.view.MenuItem;
 import java.util.ArrayList;
 import android.widget.ViewFlipper;
-
-import org.w3c.dom.Text;
 
 public class HomePage extends AppCompatActivity {
     ArrayList<Menu> MenuArray;
@@ -68,7 +60,7 @@ public class HomePage extends AppCompatActivity {
                     startActivity(new Intent(HomePage.this, Reward.class));
                     return true;
                 } else if (item.getItemId() == R.id.bottom_bill) {
-                    startActivity(new Intent(HomePage.this, MyOrders.class));
+                    startActivity(new Intent(HomePage.this, MyOrders_OnGoing.class));
                     return true;
                 }
                 return false;
