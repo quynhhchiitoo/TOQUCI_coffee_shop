@@ -68,7 +68,7 @@ public class Details extends AppCompatActivity {
 
     private void addedtoCart(){
         String itemName = textname.getText().toString();
-        int itemPrice = getIntent().getIntExtra("menuPrice", 0);
+        int itemPrice = updateTotal();
         int itemQuantity = Integer.parseInt(spinner.getSelectedItem().toString());
         boolean isSpicy = isSpicySelected;
         boolean isSauce = isSauceSelected;
@@ -86,6 +86,8 @@ public class Details extends AppCompatActivity {
         for(int i = 0; i < items.size(); i++)
             totalQuantity += items.get(i).getQuantity();
         badge.setText(String.valueOf(totalQuantity));
+
+        reset();
 
         // Show a toast message to indicate that the item has been added to the cart
         Toast.makeText(getApplicationContext(), "Item added to cart", Toast.LENGTH_SHORT).show();
@@ -158,7 +160,7 @@ public class Details extends AppCompatActivity {
             }
         });
     }
-    private void updateTotal() {
+    private int updateTotal() {
         int quantity = Integer.parseInt(spinner.getSelectedItem().toString());
         int basePrice = getIntent().getIntExtra("menuPrice", 0);
 
@@ -169,6 +171,7 @@ public class Details extends AppCompatActivity {
 
         int newTotal = (basePrice + spicyPrice + cheesePrice + saucePrice) * quantity;
         total.setText(String.valueOf(newTotal));
+        return newTotal / quantity;
     }
 
 
@@ -226,5 +229,14 @@ public class Details extends AppCompatActivity {
         for(int i = 0; i < items.size(); i++)
             totalQuantity += items.get(i).getQuantity();
         badge.setText(String.valueOf(totalQuantity));
+    }
+
+    private void reset()
+    {
+        total.setText(String.valueOf(getIntent().getIntExtra("menuPrice", 0)));
+        isSpicySelected = false;
+        isCheeseOption1Selected = true;
+        isSauceSelected = false;
+        spinner.setSelection(0);
     }
 }

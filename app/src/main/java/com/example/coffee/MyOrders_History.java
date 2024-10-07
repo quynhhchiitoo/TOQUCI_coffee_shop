@@ -10,16 +10,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.coffee.adapter.OrderAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
 
 public class MyOrders_History extends AppCompatActivity {
     private Toolbar toolbar_myorders;
+    RecyclerView recyclerView;
+    OrderAdapter adapter;
+    ArrayList<Order> items;
     TextView ongoing;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.myorders_history);
+        initView();
 
         ongoing = findViewById(R.id.ongoing);
         ongoing.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +69,17 @@ public class MyOrders_History extends AppCompatActivity {
             }
         });
     }
+
+    private void initView(){
+        recyclerView = findViewById(R.id.recycler_history);
+        Database db = Database.getInstance(this);
+        items = db.getAllOrdersFromHistory();
+        setUpRecyclerView();
+    }
+    private void setUpRecyclerView() {
+        // Set up the RecyclerView with the MyCartAdapter
+        adapter = new OrderAdapter(this, items);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
 }
-
-

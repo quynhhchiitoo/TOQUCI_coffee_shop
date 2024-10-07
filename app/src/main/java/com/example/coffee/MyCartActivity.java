@@ -72,6 +72,7 @@ public class MyCartActivity extends AppCompatActivity{
                         Order item = new Order(item_name, address, item_price, item_quantity);
                         Database db = Database.getInstance(MyCartActivity.this);
                         db.insertOrder(item);
+                        db.updatePointsForUser(user.getFullname(), user.getPoint() + item_quantity * 10);
                     }
 
                     // clear mycart table

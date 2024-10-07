@@ -70,12 +70,12 @@ public class Profile extends AppCompatActivity {
                     {
                         User user = database.getFirstUser();
                         if(user == null) {
-                            database.insertUser(fullname, phonenum, email, address);
+                            database.insertUser(fullname, phonenum, email, address, 0);
                             Toast.makeText(getApplicationContext(), "Successfully save", Toast.LENGTH_SHORT).show();
                         }
                         else {
                             database.clear("users");
-                            database.insertUser(fullname, phonenum, email, address);
+                            database.insertUser(fullname, phonenum, email, address, user.getPoint());
                             Toast.makeText(getApplicationContext(), "Successfully edit", Toast.LENGTH_SHORT).show();
                         }
                         saveChanges();

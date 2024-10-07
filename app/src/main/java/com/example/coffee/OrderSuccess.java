@@ -17,7 +17,7 @@ public class OrderSuccess extends AppCompatActivity {
         track_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(OrderSuccess.this, MyOrders.class));
+                startActivity(new Intent(OrderSuccess.this, MyOrders_OnGoing.class));
             }
         });
     }

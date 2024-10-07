@@ -32,8 +32,8 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         // Create the 'users' table with the specified columns
-        String usersColumns[] = {"id", "fullname", "phone_number", "gmail", "address"};
-        String usersFeature_columns[] = {"INTEGER PRIMARY KEY AUTOINCREMENT", "TEXT", "TEXT", "TEXT", "TEXT"};
+        String usersColumns[] = {"id", "fullname", "phone_number", "gmail", "address", "point"};
+        String usersFeature_columns[] = {"INTEGER PRIMARY KEY AUTOINCREMENT", "TEXT", "TEXT", "TEXT", "TEXT", "INTEGER"};
         createTable(sqLiteDatabase, "users", usersColumns, usersFeature_columns, usersColumns.length);
 
         // Create the 'mycart' table with the specified columns
@@ -43,8 +43,8 @@ public class Database extends SQLiteOpenHelper {
         createTable(sqLiteDatabase, "mycart", mycartColumns, mycartFeatureColumns, mycartColumns.length);
 
         // Create the 'history' table with the specified columns
-        String historyColumns[] = {"order_day", "order_time", "item_name", "item_price", "address"};
-        String historyFeatureColumns[] = {"DATE", "DATE", "TEXT", "INTEGER", "TEXT"};
+        String historyColumns[] = {"order_day", "order_time", "item_name", "item_price", "item_quantity", "address"};
+        String historyFeatureColumns[] = {"TEXT", "TEXT", "TEXT", "INTEGER", "INTEGER", "TEXT"};
         createTable(sqLiteDatabase, "history", historyColumns, historyFeatureColumns, historyColumns.length);
 
     }
@@ -173,7 +173,7 @@ public class Database extends SQLiteOpenHelper {
 
 
 
-    public long insertUser(String fullname, String phoneNumber, String gmail, String address) {
+    public long insertUser(String fullname, String phoneNumber, String gmail, String address, int point) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -181,11 +181,31 @@ public class Database extends SQLiteOpenHelper {
         values.put("phone_number", phoneNumber);
         values.put("gmail", gmail);
         values.put("address", address);
+        values.put("point", point);
 
         long insertedId = db.insert("users", null, values);
         db.close();
 
         return insertedId;
+    }
+
+    public void updatePointsForUser(String fullName, int newPoints) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("point", newPoints);
+
+        int updatedRows = db.update("users", values, "fullname=?", new String[]{fullName});
+
+        db.close();
+
+        if (updatedRows > 0) {
+            // Successfully updated the points for the user
+            // You can add any additional handling here if needed
+        } else {
+            // Failed to update the points for the user
+            // You can add any additional handling here if needed
+        }
     }
 
     public boolean existUser(String fullname, String phone_number){
@@ -217,8 +237,9 @@ public class Database extends SQLiteOpenHelper {
             String phoneNumber = cursor.getString(cursor.getColumnIndex("phone_number"));
             String gmail = cursor.getString(cursor.getColumnIndex("gmail"));
             String address = cursor.getString(cursor.getColumnIndex("address"));
+            int point = cursor.getInt(cursor.getColumnIndex("point"));
 
-            user = new User(fullname, phoneNumber, gmail, address);
+            user = new User(fullname, phoneNumber, gmail, address, point);
             cursor.close();
         }
         db.close();
@@ -226,7 +247,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public ArrayList<MyCart> getAllItemsFromCart() {
-        ArrayList<MyCart> cartItems = new ArrayList<>();
+        ArrayList<MyCart> items = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM mycart", null);
@@ -243,14 +264,40 @@ public class Database extends SQLiteOpenHelper {
 
                 // Create a new MyCart object and add it to the ArrayList
                 MyCart item = new MyCart(itemName, itemPrice, itemQuantity, isSpicy, isSauce, cheeseQuantity, imageResource);
-                cartItems.add(item);
+                items.add(item);
             } while (cursor.moveToNext());
 
             cursor.close();
         }
 
         db.close();
-        return cartItems;
+        return items;
+    }
+
+    public ArrayList<Order> getAllOrdersFromHistory() {
+        ArrayList<Order> items = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM history", null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                String day = cursor.getString(cursor.getColumnIndex("order_day"));
+                String time = cursor.getString(cursor.getColumnIndex("order_time"));
+                String name = cursor.getString(cursor.getColumnIndex("item_name"));
+                int price = cursor.getInt(cursor.getColumnIndex("item_price"));
+                int quantity = cursor.getInt(cursor.getColumnIndex("item_quantity"));
+                String address = cursor.getString(cursor.getColumnIndex("address"));
+
+                // Create a new Order object and add it to the ArrayList
+                Order item = new Order(day, time, name, address, price, quantity);
+                items.add(item);
+            } while (cursor.moveToNext());
+
+            cursor.close();
+        }
+
+        db.close();
+        return items;
     }
 
     public long insertOrder(Order order) {
@@ -261,6 +308,7 @@ public class Database extends SQLiteOpenHelper {
         values.put("order_time", order.getTime());
         values.put("item_name", order.getItem_name());
         values.put("item_price", order.getItem_price());
+        values.put("item_quantity", order.getItem_quantity());
         values.put("address", order.getAddress());
 
         long insertedId = db.insert("history", null, values);
@@ -268,5 +316,34 @@ public class Database extends SQLiteOpenHelper {
 
         return insertedId;
     }
+
+    public ArrayList<Order> getOrdersByDayAndTime(String day) {
+        ArrayList<Order> orders = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selection = "order_day=?";
+        String[] selectionArgs = {day};
+
+        Cursor cursor = db.query("history", null, selection, selectionArgs, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                String itemName = cursor.getString(cursor.getColumnIndex("item_name"));
+                String time = cursor.getString(cursor.getColumnIndex("order_time"));
+                String address = cursor.getString(cursor.getColumnIndex("address"));
+                int itemPrice = cursor.getInt(cursor.getColumnIndex("item_price"));
+                int itemQuantity = cursor.getInt(cursor.getColumnIndex("item_quantity"));
+
+                // Create a new Order object and add it to the ArrayList
+                Order order = new Order(day, time, itemName, address, itemPrice, itemQuantity);
+                orders.add(order);
+            } while (cursor.moveToNext());
+
+            cursor.close();
+        }
+
+        db.close();
+        return orders;
+    }
+
 
 }
